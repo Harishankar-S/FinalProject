@@ -5,26 +5,36 @@ import java.util.Scanner;
 public class FinalProject{
  public static void main(String[] args){
      Scanner choice = new Scanner(System.in);
+  
+     System.out.println("Welcome, please enter your choice after viewing options!\n");
+  
+     System.out.println("1. Print all content in the database\n");
      
-     System.out.println("1. Print all contents of database\n");
+     System.out.println("2. Print only music, only movies, only TV shows, only podcasts, or only photos\n");
      
-     System.out.println(". Print all genres of music available (no duplicates)\n");
+     System.out.println("3. Print all content which can be listend to\n");
      
-     System.out.println(". Print all Podcasts\n");
-     
-     System.out.println(". Print TV shows by episode number\n");
+     System.out.println("4. Print all content which can be viewed\n");
 
-     System.out.println(". Print Podcast seasons\n");
+     System.out.println("5. Load content onto respective devices\n");
      
-     System.out.println(". Print content that can be listened to\n");
+     System.out.println("6. Sort and print photos oldest to youngest\n");
      
-     System.out.println(". Print songs before 2000\n");
+     System.out.println("7. Print songs before 2000\n");
      
-     System.out.println(". Print all content that can be viewed\n");
+     System.out.println("8. Which year has the most files in the database");
      
-     System.out.println(". Print photos oldest to youngest\n");
+     System.out.println("9. Which year has the most files in the database\n");
      
-     System.out.println(". Quit the program\n");
+     System.out.println("10. What is the oldest Movie file in the database which belongs to the ‘Science Fiction’ genre?");
+     
+     System.out.println("11. Recive a shuffled collection of music\n");
+     
+     System.out.println("12. Add a new file to the database\n");
+     
+     System.out.println("13. Sort and print music by rating\n");
+     
+     System.out.println("14. Quit the program\n");
      
      int decision = choice.nextInt();
      
@@ -65,9 +75,13 @@ public class FinalProject{
         
      }
      else if(decision == 13){
-        
+    	 
+     }
+     else if(decision == 14) {
+    	 
+     }
      }
      
     }
- }
+ 
 
