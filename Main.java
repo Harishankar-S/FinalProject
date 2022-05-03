@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 public class FinalProject{
  public static void main(String[] args){
+	 List<Media> newMedia = readMedia("Final Project CSV.csv");
      Scanner choice = new Scanner(System.in);
   
      System.out.println("Welcome, please enter your choice after viewing options!\n");
@@ -95,7 +96,46 @@ public class FinalProject{
     	 
      }
      }
-     
+     public static List<Media> readMedia(String fileName) {
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader(fileName));
+			List<media> allMedia = new ArrayList<>();
+
+			String line = reader.readLine();
+			while (line != null) {
+				
+				String[] columns = line.split(",");
+
+				
+				String name = columns[0];
+				String creator = columns[1];
+				int year = Integer.parseInt(columns[2]);
+				String genre = columns[3];
+				int seasons = Integer.parseInt(columns[4]);
+				
+
+			
+				Media newMedia = new Sprinter(name, creator, year, genre, seasons);
+
+				
+				allMedia.add(newMedia);
+
+				line = reader.readLine();
+			}
+
+			reader.close();
+			return allMedia;
+		} catch (FileNotFoundException e) {
+			System.out.println("File could not be found");
+		} catch (IOException e) {
+			System.out.println("Error while reading from file");
+		} catch (NumberFormatException e) {
+			System.out.println("File is not formatted properly");
+		}
+
+		System.exit(-1);
+		return null;
+	}
     }
  
 
