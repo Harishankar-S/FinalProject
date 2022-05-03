@@ -93,7 +93,8 @@ public class FinalProject{
     	 
      }
      else if(decision == 14) {
-    	 
+    	 System.out.println("Goodbye");
+	     System.exit(1);
      }
      }
      public static List<Media> readMedia(String fileName) {
