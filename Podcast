@@ -1,18 +1,18 @@
 import java.time.Year;
 
-public final class Podcast {
+public final class Podcast extends Media{
     private String creator;
-    private String title;
     private int season;
     private int episode;
-    private int year;
+    
 
     public Podcast(String creator, String title, int season, int episode, int year) {
+        
+        super(title, year);
         setCreator(creator);
-        setTitle(title);
         setYear(season);
         setEpisode(episode);
-        setYear(year);
+        
         
     }
 
@@ -37,14 +37,14 @@ public final class Podcast {
     }
 
     public void setCreator(String creator) throws IllegalArgumentException
-	{
-		if(creator.isBlank()) {throw new IllegalArgumentException("Creator cannot be blank.");}
-	}
+    {
+        if(creator.isBlank()) {throw new IllegalArgumentException("Creator cannot be blank.");}
+    }
 
     public void setTitle(String title) throws IllegalArgumentException
-	{
-		if(title.isBlank()) {throw new IllegalArgumentException("Title cannot be blank.");}
-	}
+    {
+        if(title.isBlank()) {throw new IllegalArgumentException("Title cannot be blank.");}
+    }
 
     public void setSeason(int season) throws IllegalArgumentException{
       if(season<=0) {throw new IllegalArgumentException("Invalid Input");}
@@ -55,15 +55,17 @@ public final class Podcast {
     }
     
     public void setYear(int year) throws IllegalArgumentException
-	{
-		if(year < 1878) {throw new IllegalArgumentException("Year cannot be before 1878.");}
-		if(year > Year.now().getValue() + 1) {throw new IllegalArgumentException("Year cannot be in the future.");}
-	}
+    {
+        if(year < 1878) {throw new IllegalArgumentException("Year cannot be before 1878.");}
+        if(year > Year.now().getValue() + 1) {throw new IllegalArgumentException("Year cannot be in the future.");}
+    }
 
     @Override
     public String toString() {
         return String.format("%s, %s, %d, %d, %d", creator, title, season, episode, year);
     }
 }
+
+
 
 
