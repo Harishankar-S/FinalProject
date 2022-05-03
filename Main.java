@@ -39,7 +39,21 @@ public class FinalProject{
      int decision = choice.nextInt();
      
      if(decision == 1){
-         
+        try {
+			BufferedReader reader= new BufferedReader(new FileReader("Final Project CSV.csv"));
+			
+			String line;
+			while((line= reader.readLine()) != null) {
+				System.out.println(line);
+			}
+			reader.close();
+		}
+		catch(FileNotFoundException e) {
+			System.out.println("File Not Found");
+		}
+		catch(IOException e) {
+			System.out.println("Error while reading File");
+		}  
      }
      else if(decision == 2){
          
