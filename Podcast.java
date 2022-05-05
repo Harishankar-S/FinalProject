@@ -4,7 +4,7 @@ public class Podcast extends Media
 	private int season;
 	private int episode;
 	
-	public Podcast(String creator, String title, int season, int episode, int year)
+	public Podcast(String title, String creator, int year, int season, int episode)
 	{
 		super(title, year);
 		setCreator(creator);
@@ -37,4 +37,10 @@ public class Podcast extends Media
 	}
 	
 	
+	@Override
+	public String toString()
+	{
+		return String.format("Podcast: [Creator: %s, Title: %s, Season: %d, Episode: %d, Year: %d]",
+				this.creator, this.title, this.season, this.episode, this.year);
+	}
 }
