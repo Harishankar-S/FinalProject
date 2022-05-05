@@ -90,6 +90,23 @@ public class Main
 			media.stream().filter(x -> x.getClass().toString().equals("class Music")).filter(x -> (x.getYear() < 2000)).forEach(System.out::println);
 			break;
 		case 8:
+			int evenSize = 0;
+			int oddSize = 0;
+			for (int i = 0; i < media.size(); i++) {
+				if ( media.get(i).getYear() % 2 == 0) {
+					evenSize++;
+				}
+				else {
+					oddSize++;
+				}
+			}
+			if (evenSize > oddSize) {
+				System.out.println("There are more even years than odd");
+			}
+			else {
+				System.out.println("There are more odd years than even");
+			}
+			
 			break;
 		case 9:
 			break;
