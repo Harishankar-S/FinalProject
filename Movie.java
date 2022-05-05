@@ -1,4 +1,4 @@
-public class Movie extends Media
+public class Movie extends Media implements Audible, Viewable
 {
 	private String director;
 	private String genre;

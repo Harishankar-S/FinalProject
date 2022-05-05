@@ -1,4 +1,4 @@
-public class Podcast extends Media
+public class Podcast extends Media implements Audible
 {
 	private String creator;
 	private int season;

@@ -2,8 +2,10 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 
 public class Main
@@ -12,8 +14,8 @@ public class Main
 	{
 		List<Media> media = readFile();
 		Scanner choice = new Scanner(System.in);
-		
-		
+
+
 		System.out.println("Welcome, please enter your choice after viewing options!\n");
 
 		System.out.println("1. Print all content in the database\n");
@@ -23,14 +25,14 @@ public class Main
 		System.out.println("3. Print all content which can be listend to\n");
 
 		System.out.println("4. Print all content which can be viewed\n");
-		
+
 		System.out.println("5. Load content onto respective devices\n");
 
 		System.out.println("6. Sort and print photos oldest to youngest\n");
 
 		System.out.println("7. Print songs before 2000\n");
 
-		System.out.println("8. Which year has the most files in the database");
+		System.out.println("8. Are there more even years, or odd years?");
 
 		System.out.println("9. Which year has the most files in the database\n");
 
@@ -44,86 +46,110 @@ public class Main
 
 		System.out.println("14. Quit the program\n");
 
-		int decision = Integer.parseInt(choice.nextLine());
-		
-		switch(decision)
+
+		try
 		{
-		case 1:
-			media.stream().forEach(System.out::println);
-			break;
-		case 2:
-				  Scanner choice2 = new Scanner(System.in);
-	         System.out.println("What would you like to print? Enter Music, Movies, TV Shows, Podcasts, or Photos");
-	         String decision2 = choice2.nextLine();
+			int decision = Integer.parseInt(choice.nextLine());
+			switch(decision)
+			{
+			case 1:
+				media.stream().forEach(System.out::println);
+				break;
+			case 2:
+				Scanner fileChoice = new Scanner(System.in);
+				String fileDecision = "";
+				FileTypes fileType;
 
-	         switch(decision2) {
-	         case "Music":
-	        	 media.stream().filter(x -> x.getClass().toString().equals("class Music")).forEach(System.out::println);
-	                 break;
-	         case "Movies":
-	        	 media.stream().filter(x -> x.getClass().toString().equals("class Movie")).forEach(System.out::println);
-	                 break;
-	         case "TV Shows":
-	        	 media.stream().filter(x -> x.getClass().toString().equals("class TVShow")).forEach(System.out::println);
-	                 break;
-	         case "Podcasts":
-	        	 media.stream().filter(x -> x.getClass().toString().equals("class Podcast")).forEach(System.out::println);
-	                 break;
-	         case "Photos":
-	        	 media.stream().filter(x -> x.getClass().toString().equals("class Picture")).forEach(System.out::println);
-	                 break;
-	         }
-			break;
-		case 3:
-				media.stream().filter(x -> x.getClass().toString().equals("class Music")).forEach(System.out::println);
-		   		media.stream().filter(x -> x.getClass().toString().equals("class Podcast")).forEach(System.out::println);
-			break;
-		case 4:
-			break;
-		case 5:
-			break;
-		case 6:
-				media.stream().filter(x -> x.getClass().toString().equals("Class Picture"))
-		     .sorted((a,b) -> Integer.compare(b.getYear(), b.getYear())).forEach(System.out::println);
-			break;
-		case 7:
-			media.stream().filter(x -> x.getClass().toString().equals("class Music")).filter(x -> (x.getYear() < 2000)).forEach(System.out::println);
-			break;
-		case 8:
-			int evenSize = 0;
-			int oddSize = 0;
-			for (int i = 0; i < media.size(); i++) {
-				if ( media.get(i).getYear() % 2 == 0) {
-					evenSize++;
-				}
-				else {
-					oddSize++;
-				}
-			}
-			if (evenSize > oddSize) {
-				System.out.println("There are more even years than odd");
-			}
-			else {
-				System.out.println("There are more odd years than even");
-			}
-			
-			break;
-		case 9:
-			break;
-		case 10:
-			break;
-		case 11:
-			break;
-		case 12:
-			break;
-		case 13:
-			break;
-		case 14:
+				for(;;)
+				{
+					System.out.print("What would you like to print? Enter Music, Movie, TVShow, Podcast, or Photo: ");
+					fileDecision = fileChoice.nextLine().trim();
 
-			System.out.println("Goodbye.");
-			System.exit(1);
-		break;
+					try
+					{
+						fileType = FileTypes.valueOf(fileDecision.toUpperCase());
+						fileChoice.close();
+						break;
+					}
+					catch(IllegalArgumentException e) {System.out.println("That is not a valid file type.");}
+				}
+
+				switch(fileType)
+				{
+				case MUSIC:
+					media.stream().filter(x -> x instanceof Music).forEach(System.out::println);
+					break;
+				case MOVIE:
+					media.stream().filter(x -> x instanceof Movie).forEach(System.out::println);
+					break;
+				case TVSHOW:
+					media.stream().filter(x -> x instanceof TVShow).forEach(System.out::println);
+					break;
+				case PODCAST:
+					media.stream().filter(x -> x instanceof Podcast).forEach(System.out::println);
+					break;
+				case PHOTO:
+					media.stream().filter(x -> x instanceof Photo).forEach(System.out::println);
+					break;
+				default:
+					System.out.println("That media type is unavailable.");
+					break;
+				}
+				break;
+			case 3:
+				media.stream().filter(x -> (x instanceof Viewable)).forEach(System.out::println);
+				break;
+			case 4:
+				media.stream().filter(x -> (x instanceof Audible)).forEach(System.out::println);
+				break;
+			case 5:
+				break;
+			case 6:
+				media.stream().filter(x -> x instanceof Photo)
+				.sorted((a,b) -> Integer.compare(a.getYear(), b.getYear())).forEach(System.out::println);
+				break;
+			case 7:
+				media.stream().filter(x -> x instanceof Music).filter(x -> (x.getYear() < 2000)).forEach(System.out::println);
+				break;
+			case 8:
+				long evenSize = media.stream().filter(x -> (x.getYear() % 2 == 0)).count();
+				long oddSize = media.stream().filter(x -> (x.getYear() % 2 == 1)).count();
+
+				if (evenSize > oddSize) {System.out.printf("There are more even years than odd (%d > %d).%n", evenSize, oddSize);}
+				else {System.out.printf("There are more odd years than even (%d > %d).%n", oddSize, evenSize);}
+				break;
+			case 9:
+				break;
+			case 10:
+				media.stream().filter(x -> x instanceof Movie)
+				.map(x -> (Movie)x)
+				.filter(x -> x.getGenre().equals("Science Fiction"))
+				.sorted((a,b) -> Integer.compare(a.getYear(), b.getYear()))
+				.limit(1)
+				.forEach(System.out::println);
+				break;
+			case 11:
+				List<Media> m = media.stream().filter(x -> x instanceof Music).collect(Collectors.toList());
+				Collections.shuffle(m);
+				System.out.println(m);
+				break;
+			case 12:
+				break;
+			case 13:
+				break;
+			case 14:
+				System.out.println("Goodbye.");
+				System.exit(1);
+				break;
+			default:
+				System.out.println("Invalid input.");
+				break;
+			}
 		}
+		catch (IllegalArgumentException e) {System.out.println("Invalid input.");}
+		catch (Exception e) {System.out.println("An unknown error occurred.");}
+
+		choice.close();
 	}
 	
 	private static List<Media> readFile()
@@ -206,11 +232,13 @@ public class Main
 			
 			reader.close();
 		}
-		catch (FileNotFoundException e) {
+		catch (FileNotFoundException e)
+		{
 			System.out.println("File not found.");
 			System.exit(0);
 		}
-		catch (IllegalArgumentException e) {
+		catch (IllegalArgumentException e)
+		{
 			System.out.println("Invalid input.");
 			System.exit(1);
 		}

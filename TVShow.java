@@ -1,4 +1,4 @@
-public class TVShow extends Media
+public class TVShow extends Media implements Audible, Viewable
 {
 	private String director;
 	private short season;

@@ -1,4 +1,4 @@
-public class Music extends Media
+public class Music extends Media implements Audible
 {
 	private String artist;
 	private String genre;

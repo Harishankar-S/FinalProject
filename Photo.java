@@ -1,4 +1,4 @@
-public final class Photo extends Media
+public final class Photo extends Media implements Viewable
 {
 	public Photo(String title, int year)
 	{
@@ -8,6 +8,7 @@ public final class Photo extends Media
 	@Override
 	public String toString()
 	{
-		return String.format("%s, [ %d ]",title, year);
+		return String.format("Photo: [Title: %s, Year: %d]",
+				this.title, this.year);
 	}
 }
