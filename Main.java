@@ -52,17 +52,42 @@ public class Main
 			media.stream().forEach(System.out::println);
 			break;
 		case 2:
+				  Scanner choice2 = new Scanner(System.in);
+	         System.out.println("What would you like to print? Enter Music, Movies, TV Shows, Podcasts, or Photos");
+	         String decision2 = choice2.nextLine();
+
+	         switch(decision2) {
+	         case "Music":
+	        	 media.stream().filter(x -> x.getClass().toString().equals("class Music")).forEach(System.out::println);
+	                 break;
+	         case "Movies":
+	        	 media.stream().filter(x -> x.getClass().toString().equals("class Movie")).forEach(System.out::println);
+	                 break;
+	         case "TV Shows":
+	        	 media.stream().filter(x -> x.getClass().toString().equals("class TVShow")).forEach(System.out::println);
+	                 break;
+	         case "Podcasts":
+	        	 media.stream().filter(x -> x.getClass().toString().equals("class Podcast")).forEach(System.out::println);
+	                 break;
+	         case "Photos":
+	        	 media.stream().filter(x -> x.getClass().toString().equals("class Picture")).forEach(System.out::println);
+	                 break;
+	         }
 			break;
 		case 3:
+				media.stream().filter(x -> x.getClass().toString().equals("class Music")).forEach(System.out::println);
+		   		media.stream().filter(x -> x.getClass().toString().equals("class Podcast")).forEach(System.out::println);
 			break;
 		case 4:
 			break;
 		case 5:
 			break;
 		case 6:
+				media.stream().filter(x -> x.getClass().toString().equals("Class Picture"))
+		     .sorted((a,b) -> Integer.compare(b.getYear(), b.getYear())).forEach(System.out::println);
 			break;
 		case 7:
-			media.stream().filter(x -> x.getClass().toString().equals("class Music")).filter(x -> (x.getYear() < 2000)).forEach(System.out::println);
+			media.stream().filter(x -> x.getClass().toString().equals("class Music")).filter(x -> (x.getYear() < 2000).forEach(System.out::println));
 			break;
 		case 8:
 			break;
