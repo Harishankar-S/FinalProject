@@ -87,7 +87,7 @@ public class Main
 		     .sorted((a,b) -> Integer.compare(b.getYear(), b.getYear())).forEach(System.out::println);
 			break;
 		case 7:
-			media.stream().filter(x -> x.getClass().toString().equals("class Music")).filter(x -> (x.getYear() < 2000).forEach(System.out::println));
+			media.stream().filter(x -> x.getClass().toString().equals("class Music")).filter(x -> (x.getYear() < 2000)).forEach(System.out::println);
 			break;
 		case 8:
 			break;
