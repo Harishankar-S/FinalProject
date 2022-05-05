@@ -1,71 +1,40 @@
-import java.time.Year;
+public class Podcast extends Media
+{
+	private String creator;
+	private int season;
+	private int episode;
+	
+	public Podcast(String creator, String title, int season, int episode, int year)
+	{
+		super(title, year);
+		setCreator(creator);
+		setEpisode(episode);
+		setSeason(season);
+	}
 
-public final class Podcast extends Media{
-    private String creator;
-    private int season;
-    private int episode;
-    
+	public String getCreator() {return this.creator;}
+	public int getSeason() {return this.season;}
+	public int getEpisode() {return this.episode;}
 
-    public Podcast(String creator, String title, int season, int episode, int year) {
-        
-        super(title, year);
-        setCreator(creator);
-        setYear(season);
-        setEpisode(episode);
-        
-        
-    }
+	
+	public void setCreator(String creator) throws IllegalArgumentException
+	{
+		if(creator.isBlank()) {throw new IllegalArgumentException("Creator cannot be blank.");}
+		this.creator = creator;
+	}
+	
+	public void setSeason(int season) throws IllegalArgumentException
+	{
+		if(season <= 0) {throw new IllegalArgumentException("Season cannot be 0 or less.");}
+		this.season = season;
+	}
 
-    public String getCreator() {
-        return creator;
-    }
-    
-    public String getTitle() {
-        return title;
-    }
-    
-    public int getSeason() {
-        return season;
-    }
-    
-    public int getEpisode() {
-        return episode;
-    }
-    
-    public int getYear() {
-        return year;
-    }
 
-    public void setCreator(String creator) throws IllegalArgumentException
-    {
-        if(creator.isBlank()) {throw new IllegalArgumentException("Creator cannot be blank.");}
-    }
-
-    public void setTitle(String title) throws IllegalArgumentException
-    {
-        if(title.isBlank()) {throw new IllegalArgumentException("Title cannot be blank.");}
-    }
-
-    public void setSeason(int season) throws IllegalArgumentException{
-      if(season<=0) {throw new IllegalArgumentException("Invalid Input");}
-    }
-
-    public void setEpisode(int episode) throws IllegalArgumentException {
-        if(episode < 2) {throw new IllegalArgumentException("Episodes can not be over 2");}
-    }
-    
-    public void setYear(int year) throws IllegalArgumentException
-    {
-        if(year < 1878) {throw new IllegalArgumentException("Year cannot be before 1878.");}
-        if(year > Year.now().getValue() + 1) {throw new IllegalArgumentException("Year cannot be in the future.");}
-    }
-
-    @Override
-    public String toString() {
-        return String.format("%s, %s, %d, %d, %d", creator, title, season, episode, year);
-    }
+	public void setEpisode(int episode) throws IllegalArgumentException
+	{
+		if(episode <= 0) {throw new IllegalArgumentException("Episode cannot be 0 or less.");}
+		this.episode = episode;
+	}
+	
+	
 }
-
-
-
-
