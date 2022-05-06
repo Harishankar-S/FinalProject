@@ -104,6 +104,49 @@ public class Main
 				media.stream().filter(x -> (x instanceof Audible)).forEach(System.out::println);
 				break;
 			case 5:
+					System.out.println("Do you want to load files onto a Mp3 player, smartphone, or camera");
+				System.out.println("Press 1 for mp3, 2 for smartphone, or 3 for camera ");
+				Scanner sc = new Scanner(System.in);
+				int decision2 = sc.nextInt();
+				switch (decision2) {
+				case 1:
+					System.out.println("What type of file would you like to load in");
+					Scanner sc1 = new Scanner(System.in);
+					String DMP3 = sc1.nextLine();
+					if (DMP3.equalsIgnoreCase("Music") || DMP3.equalsIgnoreCase("Podcast")) {
+						System.out.println("File Loaded succesfully");
+						
+					} else {
+						System.out.println("Can not load onto device because of incorrect file type");
+					}
+					sc1.close();
+					break;
+				case 2:
+					System.out.println("What type of file would you like to load in");
+					Scanner sc2 = new Scanner(System.in);
+					String DSmart = sc2.nextLine();
+					if (DSmart.equalsIgnoreCase("Music") || DSmart.equalsIgnoreCase("Podcast")
+							|| DSmart.equalsIgnoreCase("Movie") || DSmart.equalsIgnoreCase("Photo")
+							|| DSmart.equalsIgnoreCase("TVshow")) {
+						System.out.println("File Loaded succesfully");
+					} else {
+						System.out.println("Can not load onto device because of incorrect file type");
+					}
+					sc2.close();
+					break;
+				case 3:
+					System.out.println("What type of file would you like to load in");
+					Scanner sc3 = new Scanner (System.in);
+					String DCam = sc.nextLine();
+					if (DCam.equalsIgnoreCase("Photo")) {
+						System.out.println("File Loaded succesfully");
+					} else {
+						System.out.println("Can not load onto device because of incorrect file type");
+					}
+					sc3.close();
+				}
+				sc.close();
+				
 				break;
 			case 6:
 				media.stream().filter(x -> x instanceof Photo)
