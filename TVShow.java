@@ -56,7 +56,7 @@ public class TVShow extends Media implements Audible, Viewable
     @Override
     public String toString()
     {
-        return String.format("TV Show: [Title: %s, Director: %s, Year: %d, Season: %d, Episode: %d, Genre: %s, Rating: %d]",
+        return String.format("TV Show: [Title: %s, Director: %s, Year: %d, Season: %d, Episode: %d, Genre: %s, Rating: %f]",
                 this.title, this.director, this.year, this.season, this.episode, this.genre, this.rating);
     }
 }
