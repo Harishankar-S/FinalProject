@@ -45,7 +45,8 @@ public class Main
 		System.out.println("13. Sort and print music by rating\n");
 
 		System.out.println("14. Quit the program\n");
-
+		int decision = 0;
+		while(decision != 14){
 
 		try
 		{
@@ -148,7 +149,7 @@ public class Main
 		}
 		catch (IllegalArgumentException e) {System.out.println("Invalid input.");}
 		catch (Exception e) {System.out.println("An unknown error occurred.");}
-
+		}
 		choice.close();
 	}
 	
