@@ -163,6 +163,10 @@ public class Main
 				else {System.out.printf("There are more odd years than even (%d > %d).%n", oddSize, evenSize);}
 				break;
 			case 9:
+					media.stream().filter(x -> x instanceof Music).map(x -> (Music) x)
+						.filter(x -> x.getGenre().equals("Rock"))
+						.sorted((a, b) -> Integer.compare(a.getYear(), b.getYear())).limit(1)
+						.forEach(System.out::println);
 				break;
 			case 10:
 				media.stream().filter(x -> x instanceof Movie)
