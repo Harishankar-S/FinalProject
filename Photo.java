@@ -1,17 +1,17 @@
 public final class Photo extends Media implements Viewable
 {
     
-   private int rating;
+   private String rating;
     
-    public Photo(String title, int year, int rating)
+    public Photo(String title, int year, String rating)
     {
         super(title, year);
         setRating(rating);
     }
     
- public int getRating() {return this.rating;}
+ public String getRating() {return this.rating;}
  
-  public void setRating(int rating) 
+  public void setRating(String rating) 
     {
         this.rating = rating;
 
