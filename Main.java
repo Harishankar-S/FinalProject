@@ -189,7 +189,7 @@ public class FinalProject
         choice.close();
     }
 
-    private static List<Media> readFile()
+      private static List<Media> readFile()
     {
         final String FILEPATH = "C:\\Users\\Alex\\Java\\MediaList.csv";
         List<Media> media = new ArrayList<Media>(25);
@@ -225,7 +225,7 @@ public class FinalProject
                             args[2].trim(),
                             Integer.parseInt(args[3]),
                             args[4].trim(),
-                            Integer.parseInt(args[5])
+                            Double.parseDouble(args[5])
                         )
                     );
                 }
@@ -240,7 +240,7 @@ public class FinalProject
                             Short.parseShort(args[4]),
                             Short.parseShort(args[5]),
                             args[6].trim(),
-                            Integer.parseInt(args[7])
+                            Double.parseDouble(args[7])
                         )
                     );
                 }
@@ -265,7 +265,7 @@ public class FinalProject
                         (
                             args[1].trim(),
                             Integer.parseInt(args[2]),
-                            Integer.parseInt(args[3])
+                            args[3].trim()
                         )
                     );
                 }
