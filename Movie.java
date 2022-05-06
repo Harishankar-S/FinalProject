@@ -30,7 +30,7 @@ public class Movie extends Media implements Audible, Viewable
         this.genre = genre;
     }
     
-    public void setRating(in rating) throws IllegalArgumentException
+    public void setRating(int rating) throws IllegalArgumentException
     {
         this.rating = rating;
     }
