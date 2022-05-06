@@ -38,7 +38,7 @@ public class Movie extends Media implements Audible, Viewable
     @Override
     public String toString()
     {
-        return String.format("Movie: [Title: %s, Director: %s, Year: %d, Genre: %s, Rating: %d]",
+        return String.format("Movie: [Title: %s, Director: %s, Year: %d, Genre: %s, Rating: %f]",
                 this.title, this.director, this.year, this.genre, this.rating);
     }
 }
